@@ -75,8 +75,9 @@ class Login extends React.Component<
             <Paper elevation={3} className="paper">
               <form onSubmit={this._handleSubmit}>
                 <label className="center">
-                  <strong>Log in</strong>
+                  <strong>Sign in</strong>
                 </label>
+                  <hr />
 
                 <tr>
                   <td>Username</td>
@@ -92,7 +93,7 @@ class Login extends React.Component<
                   </td>
                 </tr>
 
-                <button type="submit"> Log in </button>
+                <button className="button" type="submit"> Log in </button>
               </form>
             </Paper>
           </table>

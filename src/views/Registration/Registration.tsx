@@ -96,6 +96,7 @@ class Registration extends React.Component<
                 <label className="center">
                   <strong>Sign up</strong>
                 </label>
+                  <hr />
                 <tr>
                   <td>Name</td>
                   <td>
@@ -123,7 +124,7 @@ class Registration extends React.Component<
                     <input type="text" name="address" />
                   </td>
                 </tr>
-                <button type="submit"> Register </button>
+                <button className="button" type="submit"> Register </button>
               </form>
             </Paper>
           </table>
