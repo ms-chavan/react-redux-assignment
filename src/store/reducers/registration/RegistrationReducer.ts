@@ -2,6 +2,7 @@ import { IUsersRegister } from "../../models/registration/IUsersRegister";
 
 const initialState: IUsersRegister = {
   users: [],
+  isSubmitted: false,
 };
 
 export const registrationReducer = (
@@ -9,16 +10,16 @@ export const registrationReducer = (
   action: any
 ): IUsersRegister => {
   switch (action.type) {
-    case "UPDATE_REGISTER":
-      return {
-        ...state,
-        users: action.payload,
-      };
     case "SET_REGISTER":
       return {
         ...state,
         users: action.payload,
       };
+      case "SET_SUBMITTED":
+        return {
+          ...state,
+          isSubmitted: action.payload,
+        };
     default:
       return state;
   }

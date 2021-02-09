@@ -18,9 +18,7 @@ interface IStateToProps {
   isAuthenticated: boolean;
 }
 
-interface IState {
-  isAuthenticated: boolean;
-}
+interface IState {}
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
   users: state.registration.users,
@@ -31,10 +29,6 @@ class Login extends React.Component<
   IProps & DispatchProp & IStateToProps,
   IState
 > {
-  constructor(props: IProps & DispatchProp & IStateToProps) {
-    super(props);
-    this.state = { isAuthenticated: false };
-  }
 
   componentDidMount() {
     const headers = {
@@ -87,7 +81,7 @@ class Login extends React.Component<
                 <tr>
                   <td>Username</td>
                   <td>
-                    <input type="email" name="username" required />
+                    <input type="text" name="username" required />
                   </td>
                 </tr>
 

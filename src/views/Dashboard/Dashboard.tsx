@@ -40,8 +40,8 @@ class Dashboard extends React.Component<
       <>
         {this.props.isAuthenticated && (
           <div className="center">
-            Hello {this.props.userName}, you successfully logged in.
-            <div>Time since log in: {this.props.sessionTime} </div>
+            Hello {this.props.userName}, you successfully logged in!
+            <div>Time since log in &gt;&gt; {this.props.sessionTime} </div>
             <hr />
             <button className="button-margin" onClick={this._logout}>
               Log out
@@ -50,7 +50,7 @@ class Dashboard extends React.Component<
           </div>
         )}
         {!this.props.isAuthenticated && (
-          <div>Please log in to access this page</div>
+          <div className="center">Please log in to access this page.</div>
         )}
       </>
     );
@@ -60,6 +60,7 @@ class Dashboard extends React.Component<
     this.props.dispatch(
       LoginAction.setAuthDetails({ isAuthenticated: false, userName: "" })
     );
+    window.clearInterval(this.timer);
   };
 
   _resetSession = () => {

@@ -16,15 +16,15 @@ interface IProps {}
 interface IStateToProps {
   isAuthenticated: boolean;
   usersRegister: IUsersRegister;
-}
-
-interface IState {
   isSubmitted: boolean;
 }
+
+interface IState {}
 
 const mapStateToProps = (state: IStore, ownProps: IProps): IStateToProps => ({
   isAuthenticated: state.login.isAuthenticated,
   usersRegister: state.registration,
+  isSubmitted: state.registration.isSubmitted
 });
 
 class Registration extends React.Component<
@@ -66,7 +66,6 @@ class Registration extends React.Component<
       })
       .then((response: any) => {
         this.props.dispatch(RegistrationAction.setRegister(response.data));
-        this.setState({ isSubmitted: true });
       })
       .catch((error: any) => {
         console.log(error);
@@ -75,7 +74,7 @@ class Registration extends React.Component<
 
   private _handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(event.target.name.value);
+    this.props.dispatch(RegistrationAction.setSubmitted(true));
     const user: IUser = {
       id: this.props.usersRegister.users.length + 1,
       name: event.target.name.value,
@@ -90,7 +89,7 @@ class Registration extends React.Component<
   render() {
     return (
       <>
-        {!this.state.isSubmitted && !this.props.isAuthenticated && (
+        {!this.props.isSubmitted && !this.props.isAuthenticated && (
           <table>
             <Paper elevation={3} className="paper">
               <form onSubmit={this._handleSubmit}>
@@ -129,8 +128,8 @@ class Registration extends React.Component<
             </Paper>
           </table>
         )}
-        <div>
-          {this.state.isSubmitted && (
+        <div className="center">
+          {this.props.isSubmitted && !this.props.isAuthenticated &&(
             <Alert severity="success">
               Registration successful — <strong>please login!</strong>
             </Alert>
